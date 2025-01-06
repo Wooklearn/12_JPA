@@ -72,7 +72,7 @@ public class ProblumEXTests {
             menu.setMenuName(rset.getString("menu_name"));
             menu.setMenuPrice(rset.getInt("menu_price"));
             menu.setCategoryCode(rset.getInt("category_code"));
-            menu.setOrderableStatus(rset.getString("oderable_status"));
+            menu.setOrderableStatus(rset.getString("orderable_status"));
 
             menuList.add(menu);
         }
