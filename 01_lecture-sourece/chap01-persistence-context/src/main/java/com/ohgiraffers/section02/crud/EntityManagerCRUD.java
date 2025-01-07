@@ -26,6 +26,8 @@ public class EntityManagerCRUD {
         // 시작
         transaction.begin();
 
+        // insert 사용시 2가지가 들어감
+        // 팩토리안(공장 안까지)에 들어감
         manager.persist(newMenu);
         // 등록한 엔티티를 반영해라 명령
         manager.flush();
@@ -53,6 +55,24 @@ public class EntityManagerCRUD {
         transaction.commit();
 
         return foundMenu;
+    }
+
+    public Long removeAndReturnCount(int code) {
+
+        // menu 특정
+        Menu foundMenu = findMenuByMenuCode(code);
+
+        EntityTransaction transaction = manager.getTransaction();
+
+        // 시작
+        transaction.begin();
+
+        // 삭제하는 메소드
+        manager.remove(foundMenu);
+
+        transaction.commit();
+
+        return getCount(manager);
     }
 }
 
