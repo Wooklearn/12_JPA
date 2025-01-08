@@ -55,6 +55,8 @@ public class Member {
     @Column(name = "status", columnDefinition = "char(1) default 'Y'")
     private String status;
 
+    public Member() {}
+
     public Member(String memberId, String memberPwd, String memberName, String phone, String address, LocalDateTime enrollDate, MemberRole memberRole, String status) {
         this.memberId = memberId;
         this.memberPwd = memberPwd;

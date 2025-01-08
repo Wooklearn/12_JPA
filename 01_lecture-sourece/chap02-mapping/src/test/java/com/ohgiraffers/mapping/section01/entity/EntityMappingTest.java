@@ -42,17 +42,17 @@ public class EntityMappingTest {
                     "ROLE_MEMBER",
                     "Y"
             ),
-                Arguments.of(
-                        2,
-                        "user02",
-                        "pass02",
-                        "코알라",
-                        "010-5518-2290",
-                        "수원시 핑구",
-                        LocalDateTime.now(),
-                        "ROLE_ADMIN",
-                        "Y"
-                )
+            Arguments.of(
+                    2,
+                    "user02",
+                    "pass02",
+                    "코알라",
+                    "010-5518-2290",
+                    "수원시 핑구",
+                    LocalDateTime.now(),
+                    "ROLE_ADMIN",
+                    "Y"
+            )
         );
     }
 
