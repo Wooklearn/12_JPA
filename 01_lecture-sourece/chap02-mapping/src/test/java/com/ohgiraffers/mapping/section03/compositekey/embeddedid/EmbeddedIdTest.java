@@ -16,7 +16,7 @@ public class EmbeddedIdTest {
     private LikeService service;
 
     /* comment.
-    *   복합키가 존재하는 테이블의 매핑 전략
+    *    복합키가 존재하는 테이블의 매핑 전략
     *   1. EmbeddedId
     *   - @Embeddable 클래스에 복합키를 정의하고
     *   - 사용할 엔티티에서 @Embedded 로 복합키 클래스를 매핑한다.
