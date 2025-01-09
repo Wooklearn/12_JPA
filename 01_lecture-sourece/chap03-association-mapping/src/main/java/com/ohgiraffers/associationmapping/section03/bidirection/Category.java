@@ -39,4 +39,10 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Menu> menuList;
 
+    public Category(int categoryCode, String categoryName, Integer ref) {
+
+        this.categoryCode = categoryCode;
+        this.categoryName = categoryName;
+        this.refCategoryCode = ref;
+    }
 }

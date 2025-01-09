@@ -8,10 +8,10 @@ import lombok.ToString;
 
 @Entity(name = "bi_menu")
 @Table(name = "tbl_menu")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-//@ToString
+@ToString
 public class Menu {
 
     @Id
@@ -25,7 +25,8 @@ public class Menu {
     @Column(name = "menu_price")
     private int menuPrice;
 
-    @JoinColumn(name = "category_code")          // Category 클래스에 있는 category_code 와 조인
+    @ManyToOne
+    @JoinColumn(name = "category_code")
     private Category category;
 
     @Column(name = "orderable_status")
