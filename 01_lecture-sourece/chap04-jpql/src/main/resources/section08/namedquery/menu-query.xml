@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" version="2.1">
+    <named-query name="Section08Menu.selectMenuByCode">
+        <query>
+            SELECT
+            m
+            FROM Section08Menu m
+            WHERE m.menuCode = :menuCode
+        </query>
+    </named-query>
+</entity-mappings>
