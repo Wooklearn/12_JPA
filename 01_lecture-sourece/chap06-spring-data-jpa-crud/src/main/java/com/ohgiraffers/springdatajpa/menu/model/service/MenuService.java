@@ -93,8 +93,8 @@ public class MenuService {
     @Transactional
     public void registMenu(MenuDTO menu) {
 
-        Menu menuList = new Menu(menu.getMenuCode(),menu.getMenuName(),menu.getMenuPrice(),menu.getCategoryCode(),menu.getOrderableStatus());
+        Menu addMenu = new Menu(menu.getMenuCode(),menu.getMenuName(),menu.getMenuPrice(),menu.getCategoryCode(),menu.getOrderableStatus());
 
-        repository.save(menuList);
+        repository.save(addMenu);
     }
 }
