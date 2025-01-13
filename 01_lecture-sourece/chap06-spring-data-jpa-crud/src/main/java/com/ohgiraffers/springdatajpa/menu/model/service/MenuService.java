@@ -1,7 +1,10 @@
 package com.ohgiraffers.springdatajpa.menu.model.service;
 
+import com.ohgiraffers.springdatajpa.menu.entity.Category;
 import com.ohgiraffers.springdatajpa.menu.entity.Menu;
+import com.ohgiraffers.springdatajpa.menu.model.dao.CategoryRepository;
 import com.ohgiraffers.springdatajpa.menu.model.dao.MenuRepository;
+import com.ohgiraffers.springdatajpa.menu.model.dto.CategoryDTO;
 import com.ohgiraffers.springdatajpa.menu.model.dto.MenuDTO;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,6 +24,7 @@ public class MenuService {
     private final MenuRepository repository;
     // Bean 으로 등록한 modelmapper 의존성 주입
     private final ModelMapper modelMapper;
+    private final CategoryRepository categoryRepository;
 
     /* 1. 메뉴 코드로 특정 메뉴 조회하기 */
     public MenuDTO findMenuByMenuCode(int menuCode) {
@@ -63,5 +67,25 @@ public class MenuService {
         return menuList.map(
                 menu -> modelMapper.map(menu, MenuDTO.class)
         );
+    }
+
+    public List<MenuDTO> findByMenuPrice(int menuPrice) {
+
+        List<Menu> menuList = repository.findByMenuPriceGreaterThanOrderByMenuPrice(menuPrice);
+
+        return menuList.stream()
+                       .map(menu -> modelMapper.map(menu, MenuDTO.class))
+                       .collect(Collectors.toList());
+
+    }
+
+    public List<CategoryDTO> findAllCategory() {
+
+        List<Category> categoryList
+                = categoryRepository.findAllCategory();
+
+        return categoryList.stream()
+                           .map(category -> modelMapper.map(category, CategoryDTO.class))
+                           .collect(Collectors.toList());
     }
 }
