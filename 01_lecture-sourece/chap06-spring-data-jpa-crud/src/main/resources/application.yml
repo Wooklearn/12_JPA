@@ -5,11 +5,11 @@ spring:
     username: ohgiraffers
     password: ohgiraffers
 
-    jpa:
-      show-sql: true
-      database: mysql
-      properties:
-        hibernate:
-          format_sql: true
+  jpa:
+    show-sql: true
+    database: mysql
+    properties:
       hibernate:
-        ddl-auto: none
+        format_sql: true
+    hibernate:
+      ddl-auto: none

@@ -28,7 +28,7 @@ public class Menu {
     @Column(name = "category_code")
     private int categoryCode;
 
-    @Column(name = "orederable_status")
+    @Column(name = "orderable_status")
     private String orderableStatus;
 
 }
