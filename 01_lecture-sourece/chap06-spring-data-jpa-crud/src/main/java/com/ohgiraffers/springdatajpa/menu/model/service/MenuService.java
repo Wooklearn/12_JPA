@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -87,5 +88,13 @@ public class MenuService {
         return categoryList.stream()
                            .map(category -> modelMapper.map(category, CategoryDTO.class))
                            .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void registMenu(MenuDTO menu) {
+
+        Menu menuList = new Menu(menu.getMenuCode(),menu.getMenuName(),menu.getMenuPrice(),menu.getCategoryCode(),menu.getOrderableStatus());
+
+        repository.save(menuList);
     }
 }

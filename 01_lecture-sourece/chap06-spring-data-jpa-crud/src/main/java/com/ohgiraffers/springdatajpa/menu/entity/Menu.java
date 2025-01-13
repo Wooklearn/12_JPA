@@ -31,4 +31,6 @@ public class Menu {
     @Column(name = "orderable_status")
     private String orderableStatus;
 
+    public Menu(String menuName, int menuPrice, int categoryCode, String orderableStatus) {
+    }
 }

@@ -91,4 +91,12 @@ public class MenuController {
         // return 구문이 view 지정하는 것이 아닌, Data 를 리턴한다.
         return menuService.findAllCategory();
     }
+
+    @PostMapping("/regist")
+    public void registMenu(@ModelAttribute MenuDTO menu) {
+
+        System.out.println(menu);
+
+        menuService.registMenu(menu);
+    }
 }
