@@ -90,11 +90,56 @@ public class MenuService {
                            .collect(Collectors.toList());
     }
 
+    // DML 구문이기 때문에 @Transaction
     @Transactional
-    public void registMenu(MenuDTO menu) {
+    public void registNewMenu(MenuDTO newMenu) {
 
-        Menu addMenu = new Menu(menu.getMenuCode(),menu.getMenuName(),menu.getMenuPrice(),menu.getCategoryCode(),menu.getOrderableStatus());
+        // 지금까지는 Entity 를 DTO 로 변환했다면
+        // DML 구문에서는 DTO 타입을 Entity 로 변환을 해야
+        // Persistence Context == JPA 가 관리를 해준다.
+        repository.save(modelMapper.map(newMenu, Menu.class));
 
-        repository.save(addMenu);
+    }
+
+    @Transactional
+    public void modifyMenu(MenuDTO modifyMenu) {
+
+        /* update 는 엔티티를 특정해서 필드의 값을 변경해주면 된다. */
+        /* JPA는 변경 감지 기능이 있다.
+        *   따라서 하나의 엔티티를 특정해서 필드 값을 변경하면
+        *   변경된 값으로 flush (반영) 을 해준다.
+        *  */
+
+        // 엔티티 찾기(특정)
+        Menu foundMenu = repository.findById(modifyMenu.getMenuCode())
+                                   .orElseThrow(IllegalArgumentException::new); // menuCode가 없으면 예외 발생시킬거야!
+
+        System.out.println("찾은 Entity 값 = " + foundMenu);
+
+        /* 1. setter 를 통해 update 기능 - (지양한다.) */
+//        foundMenu.setMenuName(modifyMenu.getMenuName());
+
+        /* 2. @Builder 를 통해 update 기능 */
+//        foundMenu = foundMenu.toBuilder()
+//                             .menuName(modifyMenu.getMenuName())
+//                             .build();
+//        // build 를 통해서 foundMenu 새롭게 탄생 시켰으니
+//        // save 메소드를 통해 JPA 에게 전달
+//        repository.save(foundMenu);
+
+        /* 3. Entity 내부에 Builder 패턴을 구현 */
+        foundMenu = foundMenu.menuName(modifyMenu.getMenuName())
+                             .builder();
+
+        repository.save(foundMenu);
+
+        System.out.println("setter 사용 후 foundMenu = " + foundMenu);
+    }
+
+    @Transactional
+    public void deleteMenu(int menuCode) {
+
+        repository.deleteById(menuCode);
+
     }
 }
