@@ -1,4 +1,4 @@
-package com.ohgiraffers.jpaTest.jpaTest;
+package com.ohgiraffers.jpaTest.model;
 
 import lombok.*;
 

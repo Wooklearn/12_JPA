@@ -1,18 +1,14 @@
-package com.ohgiraffers.jpaTest.jpaTest;
+package com.ohgiraffers.jpaTest.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
 
-@Entity(name = "jpaTest")
+@Entity
 @Table(name = "tbl_menu")
-@Data
 public class Menu {
 
     @Id
     @Column(name = "menu_code")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int menuCode;
 
     @Column(name = "menu_name")
@@ -26,5 +22,4 @@ public class Menu {
 
     @Column(name = "orderable_status")
     private String orderableStatus;
-
 }
