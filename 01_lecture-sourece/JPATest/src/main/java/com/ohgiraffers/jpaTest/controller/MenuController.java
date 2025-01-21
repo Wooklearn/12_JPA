@@ -29,8 +29,6 @@ public class MenuController {
         this.menuService=menuService;
     }
 
-
-
     @GetMapping("/list")
     public ResponseEntity<MenuMessage> menuList() {
 
