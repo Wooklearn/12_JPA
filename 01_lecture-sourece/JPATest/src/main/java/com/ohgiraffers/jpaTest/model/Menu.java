@@ -1,9 +1,15 @@
 package com.ohgiraffers.jpaTest.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "tbl_menu")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString
+@Builder(toBuilder = true)
 public class Menu {
 
     @Id
